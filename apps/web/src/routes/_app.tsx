@@ -15,6 +15,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@template/ui/components/navigation-menu";
+import { LogOutIcon } from "lucide-react";
 
 import { authClient } from "@/lib/auth";
 import { sessionQueryOptions } from "@/queries/auth";
@@ -70,6 +71,7 @@ function RootComponent() {
                   navigate({ to: "/login" });
                 }}
               >
+                <LogOutIcon />
                 Log out
               </DropdownMenuItem>
             </DropdownMenuGroup>

@@ -15,13 +15,7 @@ function RootComponent() {
   return (
     <div className="container mx-auto flex h-screen flex-col gap-4 px-8 antialiased">
       <Outlet />
-      <Toaster
-        toastOptions={{
-          style: {
-            borderRadius: 0,
-          },
-        }}
-      />
+      <Toaster />
       <ReactQueryDevtools buttonPosition="top-right" />
       <TanStackRouterDevtools position="bottom-right" />
     </div>

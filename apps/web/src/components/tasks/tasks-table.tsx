@@ -39,7 +39,7 @@ export function TasksTable<TData, TValue>({ columns, data }: DataTableProps<TDat
   });
 
   return (
-    <div className="flex flex-1 flex-col gap-4">
+    <div className="flex flex-1 flex-col gap-6">
       <div className="flex items-center justify-between">
         <InputGroup className="max-w-xs">
           <InputGroupInput
@@ -53,7 +53,7 @@ export function TasksTable<TData, TValue>({ columns, data }: DataTableProps<TDat
         </InputGroup>
         <TasksAddForm />
       </div>
-      <div className="overflow-hidden border">
+      <div className="overflow-hidden rounded-md border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
