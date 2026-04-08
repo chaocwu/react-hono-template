@@ -13,7 +13,7 @@ export const Route = createRootRouteWithContext<{
 
 function RootComponent() {
   return (
-    <div className="container mx-auto flex h-screen flex-col gap-4 px-8 antialiased">
+    <div className="container mx-auto flex h-screen flex-col space-y-4 px-8 antialiased">
       <Outlet />
       <Toaster />
       <ReactQueryDevtools buttonPosition="top-right" />

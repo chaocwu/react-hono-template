@@ -40,12 +40,15 @@ function RootComponent() {
   // beforeLoad already ensures session exists, so we can safely use useSuspenseQuery
   const { data: session } = useSuspenseQuery(sessionQueryOptions);
   return (
-    <div className="flex h-full flex-1 flex-col gap-4">
+    <div className="flex h-full flex-1 flex-col space-y-4">
       <div className="flex items-center justify-between py-3">
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuLink className="h-8" render={<Link to="/">Home</Link>} />
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink className="h-8" render={<Link to="/tasks">Task</Link>} />
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
