@@ -9,7 +9,7 @@ export const useCreateTask = () => {
 
   return useMutation({
     mutationFn: async (input: TaskInsert) => {
-      const response = await client.tasks.$post({ json: input });
+      const response = await client.api.tasks.$post({ json: input });
 
       if (!response.ok) {
         const error = await response.json();
@@ -29,7 +29,7 @@ export const useDeleteTask = () => {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      const response = await client.tasks[":id"].$delete({ param: { id } });
+      const response = await client.api.tasks[":id"].$delete({ param: { id } });
 
       if (!response.ok) {
         const error = await response.json();

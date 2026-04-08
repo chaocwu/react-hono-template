@@ -8,20 +8,20 @@ This is a **full-stack TypeScript monorepo** featuring a React frontend and Hono
 
 ### Technology Stack
 
-| Layer | Technology |
-|-------|------------|
-| **Package Manager** | Bun 1.3.11 |
-| **Monorepo Tool** | Turbo 2.9.4 |
-| **Frontend** | React 19, Vite 8, TypeScript 6 |
-| **Routing** | TanStack Router (file-based) |
-| **Data Fetching** | TanStack Query 5 |
-| **Backend** | Hono 4.12.x |
-| **Database** | SQLite (libSQL) with Drizzle ORM |
-| **Authentication** | Better Auth 1.6+ |
-| **UI Components** | shadcn/ui (Base Nova style) + Base UI |
-| **Styling** | Tailwind CSS 4 |
-| **Linting** | Oxlint |
-| **Formatting** | Oxfmt |
+| Layer               | Technology                            |
+| ------------------- | ------------------------------------- |
+| **Package Manager** | Bun 1.3.11                            |
+| **Monorepo Tool**   | Turbo 2.9.4                           |
+| **Frontend**        | React 19, Vite 8, TypeScript 6        |
+| **Routing**         | TanStack Router (file-based)          |
+| **Data Fetching**   | TanStack Query 5                      |
+| **Backend**         | Hono 4.12.x                           |
+| **Database**        | SQLite (libSQL) with Drizzle ORM      |
+| **Authentication**  | Better Auth 1.6+                      |
+| **UI Components**   | shadcn/ui (Base Nova style) + Base UI |
+| **Styling**         | Tailwind CSS 4                        |
+| **Linting**         | Oxlint                                |
+| **Formatting**      | Oxfmt                                 |
 
 ## Project Structure
 
@@ -141,6 +141,7 @@ This project uses **Oxlint** for linting and **Oxfmt** for formatting:
 ### Import Sorting (oxfmtrc.json)
 
 Imports are automatically sorted into these groups:
+
 1. `type-import` - Type-only imports
 2. `value-builtin` + `value-external` - Node.js built-ins and npm packages
 3. `type-internal` - Internal type imports
@@ -152,6 +153,7 @@ Imports are automatically sorted into these groups:
 ### Tailwind CSS Class Sorting
 
 Tailwind classes are automatically sorted in:
+
 - `clsx()` calls
 - `cn()` calls (from `@template/ui/lib/utils`)
 - `cva()` definitions
@@ -209,6 +211,7 @@ export const taskListQueryOptions = queryOptions({
 ### 4. Database Schema Pattern
 
 Drizzle ORM schemas use:
+
 - `sqliteTable` for table definitions
 - `createId()` from `@paralleldrive/cuid2` for IDs
 - `timestamps` helper for createdAt/updatedAt
@@ -218,6 +221,7 @@ Drizzle ORM schemas use:
 ### 5. Authentication Flow
 
 Uses **Better Auth** with:
+
 - Drizzle adapter for SQLite
 - Generic OAuth plugin for Gitee integration
 - Session-based authentication
@@ -242,6 +246,7 @@ bunx shadcn@latest add button -c apps/web
 ```
 
 Import components using:
+
 ```typescript
 import { Button } from "@template/ui/components/button";
 ```
@@ -353,6 +358,7 @@ const app = createTaskRoutes(testDb);  // 使用内存数据库
 ### Type Issues Across Packages
 
 If types from `@template/api` or `@template/ui` are not resolving:
+
 1. Ensure the package is built or has exports properly defined
 2. Check that `tsconfig.json` paths are correctly set
 3. Restart TypeScript language server
@@ -360,6 +366,7 @@ If types from `@template/api` or `@template/ui` are not resolving:
 ### Database Issues
 
 If Drizzle Studio or migrations fail:
+
 1. Check `DB_FILE_NAME` environment variable is set
 2. Ensure the database file exists and is writable
 3. Review `drizzle.config.ts` for correct schema paths
@@ -367,6 +374,7 @@ If Drizzle Studio or migrations fail:
 ### Hot Reload Not Working
 
 For the API, Bun's hot reload watches for file changes. If not working:
+
 1. Ensure `bun run dev` is running
 2. Check that files are in the watched directory (`src/`)
 

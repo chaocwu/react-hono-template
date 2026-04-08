@@ -1,14 +1,12 @@
-import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { eq } from "drizzle-orm";
+import { Hono } from "hono";
 
-import type { Env } from "../lib/env";
-import { error, success } from "../lib/utils";
 import { db } from "../lib/db";
+import { error, success } from "../lib/utils";
 import { taskInsertSchema, tasksTable, taskUpdateSchema } from "../schemas/tasks";
 
-// Routes must be chained for Hono RPC type inference to work
-const app = new Hono<Env>()
+const app = new Hono()
   .get("/", async (c) => {
     const result = await db.select().from(tasksTable);
     return success(c, result);
@@ -20,11 +18,7 @@ const app = new Hono<Env>()
   })
   .get("/:id", async (c) => {
     const id = c.req.param("id");
-    const result = await db
-      .select()
-      .from(tasksTable)
-      .where(eq(tasksTable.id, id))
-      .get();
+    const result = await db.select().from(tasksTable).where(eq(tasksTable.id, id)).get();
 
     if (!result) {
       return error(c, "Task not found", 404);

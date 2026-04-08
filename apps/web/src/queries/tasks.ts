@@ -6,7 +6,7 @@ export const taskQueryOptions = (id: string) =>
   queryOptions({
     queryKey: ["task", { id }],
     queryFn: async () => {
-      const response = await client.tasks[":id"].$get({ param: { id } });
+      const response = await client.api.tasks[":id"].$get({ param: { id } });
       if (!response.ok) {
         throw new Error(`Failed to fetch task with id: ${id}`);
       }
@@ -19,7 +19,7 @@ export const taskQueryOptions = (id: string) =>
 export const taskListQueryOptions = queryOptions({
   queryKey: ["tasks"],
   queryFn: async () => {
-    const response = await client.tasks.$get();
+    const response = await client.api.tasks.$get();
     if (!response.ok) {
       throw new Error(`Failed to fetch tasks`);
     }
