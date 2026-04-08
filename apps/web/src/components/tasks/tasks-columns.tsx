@@ -47,14 +47,14 @@ function ActionsCell({ task }: { task: Task }) {
             </Button>
           }
         ></AlertDialogTrigger>
-        <AlertDialogContent>
+        <AlertDialogContent className="w-xs">
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
               This action cannot be undone. This will permanently delete the task
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter>
+          <AlertDialogFooter className="grid grid-cols-2 gap-2">
             <AlertDialogCancel disabled={isPending}>Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={handleDelete} disabled={isPending}>
               {isPending ? "Deleting..." : "Delete"}

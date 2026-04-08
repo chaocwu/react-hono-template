@@ -4,19 +4,19 @@
 
 ## 技术栈
 
-| 层级 | 技术 |
-|------|------|
-| 包管理器 | Bun 1.3.11 |
-| 构建工具 | Turbo 2.9.4 |
-| 前端 | React 19, Vite 8, TypeScript 6 |
-| 路由 | TanStack Router (文件路由) |
-| 数据获取 | TanStack Query 5 |
-| 后端 | Hono 4.12.x |
-| 数据库 | SQLite (libSQL) + Drizzle ORM |
-| 认证 | Better Auth 1.6+ |
-| UI 组件 | shadcn/ui (Base Nova) |
-| 样式 | Tailwind CSS 4 |
-| 代码质量 | Oxlint + Oxfmt |
+| 层级     | 技术                           |
+| -------- | ------------------------------ |
+| 包管理器 | Bun 1.3.11                     |
+| 构建工具 | Turbo 2.9.4                    |
+| 前端     | React 19, Vite 8, TypeScript 6 |
+| 路由     | TanStack Router (文件路由)     |
+| 数据获取 | TanStack Query 5               |
+| 后端     | Hono 4.12.x                    |
+| 数据库   | SQLite (libSQL) + Drizzle ORM  |
+| 认证     | Better Auth 1.6+               |
+| UI 组件  | shadcn/ui (Base Nova)          |
+| 样式     | Tailwind CSS 4                 |
+| 代码质量 | Oxlint + Oxfmt                 |
 
 ## 目录结构
 
