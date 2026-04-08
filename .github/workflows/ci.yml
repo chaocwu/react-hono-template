@@ -46,7 +46,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Run typecheck
-        run: bun run typecheck
+        run: bunx turbo typecheck
 
   test:
     name: Test
@@ -63,6 +63,9 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Run tests
+        env:
+          BETTER_AUTH_SECRET: test-secret-for-ci
+          BETTER_AUTH_URL: http://localhost:3000
         run: cd apps/api && bun test
 
   build:
