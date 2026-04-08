@@ -66,6 +66,7 @@ jobs:
         env:
           BETTER_AUTH_SECRET: test-secret-for-ci
           BETTER_AUTH_URL: http://localhost:3000
+          CORS_ORIGIN: http://localhost:5173
         run: cd apps/api && bun test
 
   build:
