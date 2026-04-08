@@ -1,0 +1,11 @@
+{
+  "oxc.fmt.configPath": ".oxfmtrc.json",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.removeUnusedImports": "explicit"
+  },
+  "files.exclude": {
+    "**/*.gen.ts": true
+  }
+}
