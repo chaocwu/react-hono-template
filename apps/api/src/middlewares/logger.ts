@@ -1,6 +1,5 @@
+import { createMiddleware } from "hono/factory";
 import pino from "pino";
-
-import { factory } from "../lib/factory";
 
 export const logger = pino({
   level: "info",
@@ -27,9 +26,8 @@ export const logger = pino({
   },
 });
 
-// Type-safe middleware using factory.createMiddleware
-// Inherits Env type from factory, no need to pass generics
-export const pinoLogger = factory.createMiddleware(async (c, next) => {
+// Type-safe middleware using createMiddleware
+export const pinoLogger = createMiddleware(async (c, next) => {
   const { method, url } = c.req;
   const start = Date.now();
 

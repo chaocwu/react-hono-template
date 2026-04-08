@@ -1,15 +1,16 @@
+import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { requestId } from "hono/request-id";
 
 import { auth } from "./lib/auth";
-import { factory } from "./lib/factory";
+import type { Env } from "./lib/env";
 import { error } from "./lib/utils";
 import { pinoLogger } from "./middlewares/logger";
 import { sessionMiddleware } from "./middlewares/session";
 import tasks from "./routes/tasks";
 
-// Create app with shared Env type from factory
-const app = factory.createApp();
+// Create app with Env type
+const app = new Hono<Env>();
 
 // Request ID middleware - adds unique ID to each request for tracing
 app.use("*", requestId());

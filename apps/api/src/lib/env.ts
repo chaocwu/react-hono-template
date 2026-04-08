@@ -1,7 +1,5 @@
 import type { Logger } from "pino";
 
-import { createFactory } from "hono/factory";
-
 import { auth } from "./auth";
 
 // Define the Environment type for the entire app
@@ -12,7 +10,3 @@ export type Env = {
     logger: Logger;
   };
 };
-
-// Create factory with shared Env type
-// This ensures type inference across app, middleware, and handlers
-export const factory = createFactory<Env>();

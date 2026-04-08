@@ -17,6 +17,7 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "dev": "bun run --hot src/index.ts",
+    "test": "NODE_ENV=test bun test",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -268,10 +268,55 @@ VITE_WEB_URL=http://localhost:5173       # Web app URL
 
 ## Testing
 
-Currently, the project does not have a testing setup configured. When adding tests:
-- Consider using Bun's built-in test runner for API tests
-- Use Vitest for React component testing
-- Add test scripts to `turbo.json` for orchestration
+### API Tests (`apps/api`)
+
+使用 Bun 内置测试框架 (`bun:test`)：
+
+```bash
+cd apps/api
+bun test              # 运行所有测试
+bun test --watch      # 监听模式
+```
+
+#### 测试文件结构
+
+```
+src/tests/
+├── health.test.ts      # Health check 端点测试
+├── tasks.test.ts       # Tasks API 测试
+└── auth-example.test.ts # 认证测试示例
+```
+
+#### 测试模式
+
+**1. 基础路由测试**
+
+```typescript
+import { createTaskRoutes } from "../routes/tasks";
+import { drizzle } from "drizzle-orm/libsql";
+
+const testDb = drizzle(":memory:", { ... });
+const app = createTaskRoutes(testDb);  // 使用内存数据库
+```
+
+路由使用 `createTaskRoutes(database?)` 工厂函数，支持注入测试数据库。
+
+**2. 认证路由测试**
+
+有两种方式测试需要认证的路由：
+
+- **Mock 认证**（单元测试）：注入 mock 中间件直接设置 `c.var.user`
+- **真实认证**（集成测试）：使用 Better Auth 创建真实 session
+
+详见 `auth-example.test.ts` 中的示例代码。
+
+### Web Tests (`apps/web`)
+
+尚未配置。推荐使用 Vitest 进行 React 组件测试。
+
+### 添加测试到 CI
+
+测试已集成到 CI 流水线，会在 PR 时自动运行。
 
 ## Security Considerations
 

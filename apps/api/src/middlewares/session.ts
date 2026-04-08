@@ -1,9 +1,10 @@
+import { createMiddleware } from "hono/factory";
+
 import { auth } from "../lib/auth";
-import { factory } from "../lib/factory";
 
 // Session middleware - uses cookie cache to minimize DB queries
 // With cookieCache enabled, getSession reads from cookie first, only hitting DB when needed
-export const sessionMiddleware = factory.createMiddleware(async (c, next) => {
+export const sessionMiddleware = createMiddleware(async (c, next) => {
   try {
     const session = await auth.api.getSession({ headers: c.req.raw.headers });
     if (!session) {

@@ -1,14 +1,14 @@
+import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { eq } from "drizzle-orm";
 
-import { factory } from "../lib/factory";
+import type { Env } from "../lib/env";
 import { error, success } from "../lib/utils";
 import { db } from "../lib/db";
 import { taskInsertSchema, tasksTable, taskUpdateSchema } from "../schemas/tasks";
 
-// Create typed router using factory
-// Routes are chained to preserve type inference for RPC
-const app = factory.createApp()
+// Routes must be chained for Hono RPC type inference to work
+const app = new Hono<Env>()
   .get("/", async (c) => {
     const result = await db.select().from(tasksTable);
     return success(c, result);
@@ -20,11 +20,11 @@ const app = factory.createApp()
   })
   .get("/:id", async (c) => {
     const id = c.req.param("id");
-    const result = await db.query.tasksTable.findFirst({
-      where: {
-        id: id,
-      },
-    });
+    const result = await db
+      .select()
+      .from(tasksTable)
+      .where(eq(tasksTable.id, id))
+      .get();
 
     if (!result) {
       return error(c, "Task not found", 404);
@@ -52,9 +52,7 @@ const app = factory.createApp()
 
     const [result] = await db
       .update(tasksTable)
-      .set({
-        ...updateData,
-      })
+      .set(updateData)
       .where(eq(tasksTable.id, id))
       .returning();
 
